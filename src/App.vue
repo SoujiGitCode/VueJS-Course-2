@@ -27,9 +27,22 @@ const markAsFav = (tittle) =>{
   favourite.value= tittle
 }
 
-fetch('https://jsonplaceholder.typicode.com/posts').then(response => response.json()).
+/*fetch('https://jsonplaceholder.typicode.com/posts').then(response => response.json()).
 then(data => blogsData.value=data).
-finally(()=>loadingSpinner.value=false)
+finally(()=>loadingSpinner.value=false) */
+
+const fetchData = async () =>{
+try{
+const res = await fetch('https://jsonplaceholder.typicode.com/posts')
+  blogsData.value = await res.json()
+}catch (e) {
+ console.log(e)
+}finally {
+  loadingSpinner.value = false
+}
+}
+
+fetchData()
 </script>
 
 
